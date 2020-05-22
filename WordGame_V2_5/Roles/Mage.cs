@@ -24,6 +24,7 @@ namespace WordGame_V2_5
             name = "小鸡莎莉";
             id = 1001;
             roleType = RoleType.Player;
+            roleStatus = RoleStatus.Alive;
             MaxHp = 30;
             Hp = 30;
             Speed = 4;

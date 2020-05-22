@@ -20,6 +20,7 @@ namespace WordGame_V2_5
         public string name;
         public int id;
         public RoleType roleType;
+        public RoleStatus roleStatus;
 
         protected int maxHp = 0;
         public int MaxHp
@@ -38,7 +39,7 @@ namespace WordGame_V2_5
                 else if ( value <= 0  )
                 {
                     hp = 0;
-                    RoleStatus roleStatus = RoleStatus.Dead;
+                    roleStatus = RoleStatus.Dead;
                     IsDead = true;
                     Die ( );
                 }

@@ -13,6 +13,7 @@ namespace WordGame_V2_5
             name = "史莱姆";
             id = 2101;
             roleType = RoleType.Monster;
+            roleStatus = RoleStatus.Alive;
             MaxHp = 15;
             Hp = 15;
             Speed = 3;

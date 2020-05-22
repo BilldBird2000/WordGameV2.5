@@ -51,22 +51,24 @@ namespace WordGame_V2_5
 
                     OrderPass ( );
                     tarsList = BattleMng.Ins.IDToRole (ImportMng.Ins.tarsIDList , allList);
-                    for(int i=0;i<actSeqList.Count;i++ )
+                    for ( int i = 0; i < actSeqList.Count; i++ )
                     {
-                        if(actSeqList[i] is Mage)
+                        if ( actSeqList [ i ] is Mage )
                         {
-                            for(int j=0;j<tarsList.Count;j++ )
+                            for ( int j = 0; j < tarsList.Count; j++ )
                             {
                                 actSeqList [ i ].UseSkill (actSeqList [ i ] , tarsList [ j ] , ImportMng.Ins.matchSkill);
-                                Util.Input ("{0}向{1}-{2}释放技能{3},造成{4}点伤害!!!" ,
-                                    Mage.Ins.name , tarsList [ j ].name , tarsList [ j ].id , 
-                                    ImportMng.Ins.matchSkill.name , ImportMng.Ins.matchSkill.baseDamage);
+                            }
+                            for ( int j = tarsList.Count - 1; j > 0; j-- )
+                            {
+                                if ( tarsList [ j ].roleStatus == RoleStatus.Dead )
+                                    liveList.Remove (tarsList [ j ]);
                             }
                         }
                     }
 
 
-                    notPass = false;
+                    //notPass = false;
 
 
                 }
