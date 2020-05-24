@@ -21,8 +21,9 @@ namespace WordGame_V2_5
         public int id;
         public RoleType roleType;
         public RoleStatus roleStatus;
+        public int gold;
 
-        protected int maxHp = 0;
+        private int maxHp = 0;
         public int MaxHp
         {
             set { maxHp = value; }
@@ -36,11 +37,10 @@ namespace WordGame_V2_5
             {
                 if ( value > MaxHp )
                     hp = MaxHp;
-                else if ( value <= 0  )
+                else if ( value <= 0 )
                 {
                     hp = 0;
                     roleStatus = RoleStatus.Dead;
-                    IsDead = true;
                     Die ( );
                 }
                 else
@@ -58,6 +58,7 @@ namespace WordGame_V2_5
             get { return speed; }
         }
 
+        //死亡标记被RoleStatus.Dead代替了
         protected bool isDead = false;
         public bool IsDead
         {

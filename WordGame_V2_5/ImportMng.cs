@@ -99,7 +99,7 @@ namespace WordGame_V2_5
         }
 
         //解析第二段输入:tarsID
-        public bool ParseTarsOrder ( List<RoleBase> liveList )
+        public bool ParseTarsOrder ( List<RoleBase> liveList , RoleBase player )
         {
             Util.Input ("请输入目标ID:");
             string import = Console.ReadLine ( );
@@ -107,14 +107,14 @@ namespace WordGame_V2_5
 
             if ( string.IsNullOrWhiteSpace (import) )
             {
-                if ( matchSkill.skillRange != SkillRange.All )
+                if ( matchSkill.skillProperty != SkillProperty.All )
                 {
                     Util.Input ("未输入目标,技能无法使用!");
                     return false;
                 }
                 else
                 {
-                    Util.Input ("当前技能为全体技能,按任意键继续...");
+                    Util.Input ("全体技能>>>>>>");
                     return AllTarsID (liveList);
                 }
             }
@@ -128,25 +128,26 @@ namespace WordGame_V2_5
             }
             if ( idStrList.Count > 1 )
             {
-                if ( matchSkill.skillRange == SkillRange.Single )
+                if ( matchSkill.skillProperty == SkillProperty.Single )
                 {
                     Util.Input ("当前技能为单体技能,目标无效!");
                     return false;
                 }
-                else if ( matchSkill.skillRange == SkillRange.Multi )
+                else if ( matchSkill.skillProperty == SkillProperty.Multi )
                 {
-                    return FindTargetsID (liveList);
+                    return FindTargetsID (liveList , player);
                 }
                 else
                 {
+                    Util.Input ("全体技能...");
                     return AllTarsID (liveList);
                 }
             }
             else
             {
-                if ( matchSkill.skillRange != SkillRange.All )
+                if ( matchSkill.skillProperty != SkillProperty.All )
                 {
-                    return FindTargetsID (liveList);
+                    return FindTargetsID (liveList , player);
                 }
                 else
                 {
@@ -156,12 +157,13 @@ namespace WordGame_V2_5
         }
 
         //将string类型的idList转换成int类型
-        //当前版本目标不包括:召唤物,施法者本人,已死对象
-        public bool FindTargetsID ( List<RoleBase> liveList )
+        //当前版本目标不包括:召唤物和已死亡对象
+        public bool FindTargetsID ( List<RoleBase> liveList ,RoleBase player)
         {
             try
             {
                 List<int> enemyID = new List<int> ( );
+                enemyID.Add (player.id);
                 for ( int i = 0; i < liveList.Count; i++ )
                     enemyID.Add (liveList [ i ].id);
                 for ( int i = 0; i < idStrList.Count; i++ )
@@ -178,7 +180,9 @@ namespace WordGame_V2_5
 
                     bool inList = InListCheck (id , tarsIDList);
                     if ( inList )
-                        Util.Input ("技能释放对象: {0}" , id);
+                    {
+                        //Util.Input ("技能释放对象: {0}" , id);
+                    }
                     else
                     {
                         Util.Input ("{0}是无效ID!" , id);

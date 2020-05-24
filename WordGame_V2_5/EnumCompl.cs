@@ -9,7 +9,7 @@ namespace WordGame_V2_5
     //枚举合集
     //枚举不需要放在类里面,可以被直接调用
     
-    public enum SkillRange
+    public enum SkillProperty  //技能作用于对象个数的属性描述
     {
         Single,
         Multi,
@@ -21,16 +21,16 @@ namespace WordGame_V2_5
     public enum RoleType
     {
         Player,
-        Summon,
         Monster,
         Boss,
+        Summon, //召唤
     }
 
     public enum RoleStatus
     {
         Alive,
         Dead,
-        Constraint,
+        Constraint, //被控
     }
 
     public enum GamelevelType

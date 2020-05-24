@@ -6,20 +6,24 @@ using System.Threading.Tasks;
 
 namespace WordGame_V2_5
 {
-    class Mage : RoleBase
+    //Brown:Warrior
+    //Sally:Mage
+    //Cony:Priest
+
+    class Sally : RoleBase
     {
-        private static Mage _mage = null;
-        public static Mage Ins
+        private static Sally _sally = null;
+        public static Sally Ins
         {
             get
             {
-                if ( _mage == null )
-                    _mage = new Mage ( );
-                return _mage;
+                if ( _sally == null )
+                    _sally = new Sally ( );
+                return _sally;
             }
         }
 
-        public Mage()
+        public Sally()
         {
             name = "小鸡莎莉";
             id = 1001;
@@ -27,12 +31,13 @@ namespace WordGame_V2_5
             roleStatus = RoleStatus.Alive;
             MaxHp = 30;
             Hp = 30;
-            Speed = 4;
+            Speed = 3;
         }
 
         public override void Die ( )
         {
-            base.Die ( );
+            //base.Die ( );
+            Util.Input ("       ....{0}挂了,{1}金币散落一地..." , this.name , BattleMng.Ins.GoldTotal);
         }
 
         public override void UseSkill ( RoleBase user , RoleBase target , SkillBase skill )

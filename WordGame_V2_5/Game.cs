@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace WordGame_V2_5
 {
     //次级入口,启动游戏
+    //思考:怎样在进入关卡之前由玩家指定一个角色的职业,即在Game类中完成_player的实例化和赋值
 
     class Game
     {

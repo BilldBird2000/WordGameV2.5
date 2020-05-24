@@ -12,20 +12,20 @@ namespace WordGame_V2_5
         {
             name = "***小火球***";
             ID = 01;
-            baseDamage = 30;
-            skillRange = SkillRange.Single;
+            damageBase = 6;
+            skillProperty = SkillProperty.Single;
 
         }
 
         public override void Do ( RoleBase user , RoleBase target )
         {
             int tarHp = target.Hp;
-            int damage = baseDamage;
-            Util.Input ("{0}向{1}.{2}释放技能{3},造成{4}点伤害!!!" , 
-                user.name , target.name , target.id , name , damage);
+            int damage = damageBase;
             tarHp -= damage;
-            target.Hp = tarHp;
 
+            Util.Input ("           {0}_{1} 向 {2}_{3} 释放技能 {4}, 造成 {5} 点伤害!!!" ,
+                user.name , user.id , target.name , target.id , name , damage);
+            target.Hp = tarHp;
         }
 
     }

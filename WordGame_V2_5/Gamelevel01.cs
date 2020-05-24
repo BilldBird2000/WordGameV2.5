@@ -15,7 +15,7 @@ namespace WordGame_V2_5
             notPass = true;
             gamelevelType = GamelevelType.Battle;
             maxRound = 11;
-            num1 = 5;
+            num1 = 5; 
 
             for ( int i = 0; i < num1; i++ )
             {
@@ -25,6 +25,9 @@ namespace WordGame_V2_5
 
             }
         }
+
+        public RoleBase _player = Sally.Ins;
+        public SkillBase enemyAI = new Skill04 ( );
 
         public override void Battle ( )
         {
@@ -40,35 +43,55 @@ namespace WordGame_V2_5
                     Util.Input ( );
                     Util.Input ("=第{0}回合=" , r);
 
-                    actSeqList = BattleMng.Ins.ActSequence (Mage.Ins , liveList);
+                    actSeqList = BattleMng.Ins.ActSequence (_player , liveList);
                     Util.Input ("场上状态:");
-                    for ( int i = 0; i < actSeqList.Count; i++ )
+                    for (int i = 0; i < actSeqList.Count; i++ )
                     {
-                        Util.Input ("        {0}, ID:{1}, 生命值:{2}, 最大生命值{3}, 速度值:{4}. " ,
+                        Util.Input ("       {0}, ID:{1}, 生命值:{2}. " ,
                                         actSeqList [ i ].name , actSeqList [ i ].id , actSeqList [ i ].Hp ,
                                         actSeqList [ i ].MaxHp , actSeqList [ i ].Speed);
                     }
+                    Util.Input ("可用技能:");
+                    Util.Input ("       单体: skill01_小火球[-6], skill04_普攻[-5], skill06_愈合[+10]");
+                    Util.Input ("       群体: skill02_爆裂大火球[-4], skill05_吸血[-2,+2]");
+                    Util.Input ("       全体: skill03_流星火雨[-5]");
 
                     OrderPass ( );
-                    tarsList = BattleMng.Ins.IDToRole (ImportMng.Ins.tarsIDList , allList);
+                    tarsList = BattleMng.Ins.IDToRole (ImportMng.Ins.tarsIDList , allList , _player);
                     for ( int i = 0; i < actSeqList.Count; i++ )
                     {
-                        if ( actSeqList [ i ] is Mage )
+                        if ( actSeqList [ i ].roleType == RoleType.Player )
                         {
                             for ( int j = 0; j < tarsList.Count; j++ )
-                            {
                                 actSeqList [ i ].UseSkill (actSeqList [ i ] , tarsList [ j ] , ImportMng.Ins.matchSkill);
-                            }
-                            for ( int j = tarsList.Count - 1; j > 0; j-- )
+                            for ( int j = tarsList.Count - 1; j >= 0; j-- )
                             {
                                 if ( tarsList [ j ].roleStatus == RoleStatus.Dead )
+                                {
                                     liveList.Remove (tarsList [ j ]);
+                                    BattleMng.Ins.GoldTotal = tarsList [ j ].gold;
+                                }
+                            }
+                        }
+                        if ( actSeqList [ i ].roleType == RoleType.Monster && actSeqList [ i ].roleStatus == RoleStatus.Alive )
+                        {
+                            actSeqList [ i ].UseSkill (actSeqList [ i ] , _player , enemyAI);
+                            if ( _player.roleStatus == RoleStatus.Dead )
+                            {
+                                maxRound = r;
+                                notPass = false;
+                                break;
                             }
                         }
                     }
 
-
-                    //notPass = false;
+                    if ( liveList.Count == 0 )
+                    {
+                        Util.Input ( );
+                        Util.Input ("       恭喜通关~~累计获得 {0} 金币!!!" , BattleMng.Ins.GoldTotal);
+                        maxRound = r;
+                        notPass = false;
+                    }
 
 
                 }
@@ -76,7 +99,7 @@ namespace WordGame_V2_5
         }
 
         //解析技能和目标ID
-        public void OrderPass()
+        public void OrderPass ( )
         {
             bool skillOrder = false;
             bool idOrder = false;
@@ -86,7 +109,7 @@ namespace WordGame_V2_5
                 if ( skillOrder == true )
                 {
                     while ( !idOrder )
-                        idOrder = ImportMng.Ins.ParseTarsOrder (liveList);
+                        idOrder = ImportMng.Ins.ParseTarsOrder (liveList , _player);
                 }
             }
         }

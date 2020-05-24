@@ -53,11 +53,14 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoleBase.cs" />
-    <Compile Include="Roles\Mage.cs" />
+    <Compile Include="Roles\Enemy02.cs" />
+    <Compile Include="Roles\Sally.cs" />
     <Compile Include="Skill01.cs" />
     <Compile Include="Skill02.cs" />
     <Compile Include="Skill03.cs" />
     <Compile Include="Skill04.cs" />
+    <Compile Include="Skill05.cs" />
+    <Compile Include="Skill06.cs" />
     <Compile Include="SkillBase.cs" />
     <Compile Include="SkillMng.cs" />
     <Compile Include="Util.cs" />

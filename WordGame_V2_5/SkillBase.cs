@@ -15,8 +15,8 @@ namespace WordGame_V2_5
     {
         public string name;
         public int ID;
-        public int baseDamage;
-        public  SkillRange skillRange;
+        public int damageBase;
+        public  SkillProperty skillProperty;
 
         public virtual void Do ( RoleBase user , RoleBase target )
         {

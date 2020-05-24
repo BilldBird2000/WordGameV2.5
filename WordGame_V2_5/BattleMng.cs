@@ -45,8 +45,9 @@ namespace WordGame_V2_5
         }
 
         //用比较ID的方法获得技能对象列表
-        public List<RoleBase> IDToRole ( List<int> tarsIDList , List<RoleBase> allList )
+        public List<RoleBase> IDToRole ( List<int> tarsIDList , List<RoleBase> allList , RoleBase player )
         {
+            RemoveTheSameID (tarsIDList);
             List<RoleBase> tars = new List<RoleBase> ( );
             for ( int i = 0; i < tarsIDList.Count; i++ )
             {
@@ -54,13 +55,36 @@ namespace WordGame_V2_5
                 {
                     if ( tarsIDList [ i ] == allList [ j ].id )
                         tars.Add (allList [ j ]);
+                    else if ( tarsIDList [ i ] == player.id )
+                    {
+                        tars.Add (player);
+                        break;
+                    }
                 }
             }
             return tars;
         }
 
-        //金币计算器
+        public void RemoveTheSameID ( List<int> tarsIDList )
+        {
+            for ( int i = tarsIDList.Count - 1; i > 0; i-- )
+            {
+                foreach ( int j in tarsIDList )
+                {
+                    if ( j == tarsIDList [ i ] )
+                        tarsIDList.Remove (tarsIDList [ i ]);
+                    break;
+                }
+            }
+        }
 
+        //金币计算器
+        private int _goldTotal = 0;
+        public int GoldTotal
+        {
+            set { _goldTotal += value; }
+            get { return _goldTotal; }
+        }
 
 
     }
