@@ -15,7 +15,7 @@ namespace WordGame_V2_5.Roles
             id = 2201;
             roleType = RoleType.Monster;
             roleStatus = RoleStatus.Alive;
-            MaxHp = 10;
+            MaxHp = 8;
             Hp = 10;
             Speed = 4;
             gold = Game._random.Next (5 , 8);

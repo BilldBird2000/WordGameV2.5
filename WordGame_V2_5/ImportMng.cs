@@ -42,7 +42,7 @@ namespace WordGame_V2_5
         //执行后获得返回值true,和skillID的赋值
         public bool ParseSkillOrder ( )
         {
-            Util.Input ("请输入: skill skillID : ");
+            Util.Input ("请输入: skill ID : ");
 
             string import = Console.ReadLine ( );
             if ( string.IsNullOrWhiteSpace (import) )
@@ -158,7 +158,7 @@ namespace WordGame_V2_5
 
         //将string类型的idList转换成int类型
         //当前版本目标不包括:召唤物和已死亡对象
-        public bool FindTargetsID ( List<RoleBase> liveList ,RoleBase player)
+        public bool FindTargetsID ( List<RoleBase> liveList , RoleBase player )
         {
             try
             {
@@ -188,7 +188,6 @@ namespace WordGame_V2_5
                         Util.Input ("{0}是无效ID!" , id);
                         return false;
                     }
-
                 }
             }
             catch
@@ -196,6 +195,8 @@ namespace WordGame_V2_5
                 Util.Input ("无效ID00000000!");
                 return false;
             }
+
+            RemoveTheSameID (tarsIDList);
             return true;
         }
 
@@ -210,7 +211,21 @@ namespace WordGame_V2_5
             return false;
         }
 
-        //存活对象全部是技能目标
+        //移除重复输入的ID
+        public void RemoveTheSameID ( List<int> tarsIDList )
+        {
+            for ( int i = tarsIDList.Count - 1; i > 0; i-- )
+            {
+                foreach ( int j in tarsIDList )
+                {
+                    if ( j == tarsIDList [ i ] )
+                        tarsIDList.Remove (tarsIDList [ i ]);
+                    break;
+                }
+            }
+        }
+
+        //释放全体技能时选择全部存活的对象
         public bool AllTarsID ( List<RoleBase> liveList )
         {
             for ( int i = 0; i < liveList.Count; i++ )

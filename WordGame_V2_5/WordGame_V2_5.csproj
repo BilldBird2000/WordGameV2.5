@@ -44,6 +44,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BattleMng.cs" />
+    <Compile Include="Gamelevel02.cs" />
+    <Compile Include="Gamelevel03.cs" />
     <Compile Include="Roles\Enemy01.cs" />
     <Compile Include="EnumCompl.cs" />
     <Compile Include="Gamelevel01.cs" />
@@ -61,6 +63,7 @@
     <Compile Include="Skill04.cs" />
     <Compile Include="Skill05.cs" />
     <Compile Include="Skill06.cs" />
+    <Compile Include="Skill07.cs" />
     <Compile Include="SkillBase.cs" />
     <Compile Include="SkillMng.cs" />
     <Compile Include="Util.cs" />

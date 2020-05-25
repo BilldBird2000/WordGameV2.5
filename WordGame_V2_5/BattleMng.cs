@@ -27,10 +27,11 @@ namespace WordGame_V2_5
 
         //按速度排序
         public int maxSpeed = 5;
+        public int minSpeed = 2;
         public List<RoleBase> ActSequence ( RoleBase player , List<RoleBase> liveList )
         {
             List<RoleBase> actSeq = new List<RoleBase> ( );
-            for ( int s = maxSpeed; s > 1; s-- )
+            for ( int s = maxSpeed; s > minSpeed; s-- )
             {
                 if ( player.Speed == s )
                     actSeq.Add (player);
@@ -47,7 +48,7 @@ namespace WordGame_V2_5
         //用比较ID的方法获得技能对象列表
         public List<RoleBase> IDToRole ( List<int> tarsIDList , List<RoleBase> allList , RoleBase player )
         {
-            RemoveTheSameID (tarsIDList);
+            //RemoveTheSameID (tarsIDList);
             List<RoleBase> tars = new List<RoleBase> ( );
             for ( int i = 0; i < tarsIDList.Count; i++ )
             {
@@ -65,27 +66,30 @@ namespace WordGame_V2_5
             return tars;
         }
 
-        public void RemoveTheSameID ( List<int> tarsIDList )
-        {
-            for ( int i = tarsIDList.Count - 1; i > 0; i-- )
-            {
-                foreach ( int j in tarsIDList )
-                {
-                    if ( j == tarsIDList [ i ] )
-                        tarsIDList.Remove (tarsIDList [ i ]);
-                    break;
-                }
-            }
-        }
+        //移除操作移动到ImportMng中
+        //public void RemoveTheSameID ( List<int> tarsIDList )
+        //{
+        //    for ( int i = tarsIDList.Count - 1; i > 0; i-- )
+        //    {
+        //        foreach ( int j in tarsIDList )
+        //        {
+        //            if ( j == tarsIDList [ i ] )
+        //                tarsIDList.Remove (tarsIDList [ i ]);
+        //            break;
+        //        }
+        //    }
+        //}
 
-        //金币计算器
-        private int _goldTotal = 0;
+        //金币总和
+        private int goldTotal = 0;
         public int GoldTotal
         {
-            set { _goldTotal += value; }
-            get { return _goldTotal; }
+            set { goldTotal += value; }
+            get { return goldTotal; }
         }
 
+        //通关检测
+        public bool GameLevelPass { set; get; } = false;
 
     }
 }
