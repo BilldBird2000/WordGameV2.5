@@ -23,13 +23,15 @@ namespace WordGame_V2_5
         }
 
         public static Random _random = new Random ( );
-        public GamelevelBase matchLevel = null;
-        public Dictionary<int , GamelevelBase> level = new Dictionary<int , GamelevelBase>
-        {
-            {01, null},
-            {02, null},
-            {03, null}
-        };
+        public GamelevelBase nowGamelevel = null;
+        public int nowID;
+
+        //public Dictionary<int , GamelevelBase> level = new Dictionary<int , GamelevelBase>
+        //{
+        //    {01, null},
+        //    {02, null},
+        //    {03, null}
+        //};
 
 
         public void Start ( )
@@ -37,29 +39,32 @@ namespace WordGame_V2_5
             Util.Input ( );
             Util.Input ("==游戏开始==");
 
-            bool passCheck = false;
-            while( !passCheck )
+            nowGamelevel = new Gamelevel01 ( );
+            nowID = nowGamelevel.id;
+            while ( nowID != 0 )
             {
-                foreach(int k in level.Keys)
+                nowGamelevel.Battle ( );
+                if ( BattleMng.Ins.GameLevelPass == true )
                 {
-                    MatchLevel (k);     //实例化第k关,并完成对matchLevel的赋值
-                    matchLevel.Battle ( );
-                    if ( BattleMng.Ins.GameLevelPass == true )
-                    {
-                        Util.Input ( );
-                        Util.Input ("       恭喜通关~~累计获得 {0} 金币!!!" , BattleMng.Ins.GoldTotal);
-                        Util.Input ("       按任意键进入下一关卡~~" , BattleMng.Ins.GoldTotal);
-                    }
-                    else
-                    {
-                        passCheck = true;
-                        Util.Input ( );
-                        Util.Input ("       路漫漫其修远兮...");
-                        break;
-                    }
+                    nowID = nowGamelevel.nextID;
+                    Util.Input ( );
+                    Util.Input ("       恭喜通关~~累计获得 {0} 金币!!!" , BattleMng.Ins.GoldTotal);
+                    Util.Input ("       按任意键进入下一关卡~~" , BattleMng.Ins.GoldTotal);
+                    Console.ReadKey ( );
                 }
+                else
+                {
+                    Util.Input ( );
+                    Util.Input ("       路漫漫其修远兮...");
+                    break;
+                }
+
+                //foreach(int k in level.Keys)
+                //{
+                //    MatchLevel (k);     //实例化第k关,并完成对matchLevel的赋值
+                //}
             }
-            
+
             Util.Input ( );
             Util.Input ("这只是个测试...");
 
@@ -69,28 +74,6 @@ namespace WordGame_V2_5
 
         }
 
-        //匹配关卡并实例化关卡
-        public void MatchLevel(int k)
-        {
-            switch(k)
-            {
-                case 01:
-                    matchLevel= new Gamelevel01 ( );
-                    break;
-                case 02:
-                    matchLevel = new Gamelevel02 ( );
-                    break;
-                case 03:
-                    matchLevel = new Gamelevel03 ( );
-                    break;
-
-                default:
-                    Util.Input ( );
-                    Util.Input ("创建关卡失败...");
-                    break;
-
-            }
-        }
-
+ 
     }
 }

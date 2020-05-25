@@ -23,12 +23,7 @@ namespace WordGame_V2_5
         public RoleStatus roleStatus;
         public int gold;
 
-        private int maxHp = 0;
-        public int MaxHp
-        {
-            set { maxHp = value; }
-            get { return maxHp; }
-        }
+        public int MaxHp { set; get; } = 0;
 
         protected int hp = 0;
         public int Hp

@@ -15,6 +15,7 @@ namespace WordGame_V2_5
     {
         public string name;
         public int id;
+        public int nextID;
         public bool notPass;
         public GamelevelType gamelevelType;
         public int maxRound;
@@ -39,7 +40,7 @@ namespace WordGame_V2_5
         }
 
 
-        //解析技能和目标ID,每个关卡都需要执行,so放在Base类
+        //解析技能和目标ID,每个关卡都需要执行,so放在Base类更合适
         public void OrderPass ( )
         {
             bool skillOrder = false;

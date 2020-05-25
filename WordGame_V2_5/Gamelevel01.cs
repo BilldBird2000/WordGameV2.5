@@ -12,6 +12,7 @@ namespace WordGame_V2_5
         {
             name = "==关卡01==";
             id = 01;
+            nextID = 02;
             notPass = true;
             gamelevelType = GamelevelType.Battle;
             maxRound = 11;
@@ -33,7 +34,7 @@ namespace WordGame_V2_5
         public override void Battle ( )
         {
             Util.Input ( );
-            Util.Input (name);
+            Util.Input ("{0} 通关条件:在{1}回合内完成战斗!" , name , maxRound - 1);
             for ( int i = 0; i < allList.Count; i++ )
                 liveList.Add (allList [ i ]);
 
@@ -53,9 +54,9 @@ namespace WordGame_V2_5
                                         actSeqList [ i ].MaxHp , actSeqList [ i ].Speed);
                     }
                     Util.Input ("可用技能:");
-                    Util.Input ("       单体: skill01_小火球[-6], skill04_普攻[-5], skill06_愈合[+10]");
-                    Util.Input ("       群体: skill02_爆裂大火球[-4], skill05_吸血[-2,+2]");
-                    Util.Input ("       全体: skill03_流星火雨[-5]");
+                    Util.Input ("       单体: skill 01_小火球[-6], skill 06_愈合[+10]");
+                    Util.Input ("       群体: skill 02_炎爆术[-5], skill 05_吸血[-3,+3]");
+                    Util.Input ("       全体: skill 03_流星火雨[-4]");
 
                     OrderPass ( );
 
@@ -80,7 +81,6 @@ namespace WordGame_V2_5
                             actSeqList [ i ].UseSkill (actSeqList [ i ] , _player , enemy01AI);
                             if ( _player.roleStatus == RoleStatus.Dead )
                             {
-                                maxRound = r;
                                 notPass = false;
                                 break;
                             }
@@ -89,11 +89,21 @@ namespace WordGame_V2_5
 
                     if ( liveList.Count == 0 )
                     {
-                        maxRound = r;
                         notPass = false;
-                        BattleMng.Ins.GameLevelPass = true;
+                        break;
                     }
 
+                }
+
+                if ( liveList.Count > 0 )
+                {
+                    Util.Input ( );
+                    Util.Input ("       未能在{0}回合内完成战斗,闯关失败..." , maxRound - 1);
+                }
+                else
+                {
+                    Game.Ins.nowGamelevel = new Gamelevel02 ( );
+                    BattleMng.Ins.GameLevelPass = true;
                 }
             }
         }

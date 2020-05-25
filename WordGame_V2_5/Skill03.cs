@@ -12,7 +12,7 @@ namespace WordGame_V2_5
         {
             name = "***流星火雨***";
             ID = 03;
-            damageBase = 5;
+            damageBase = 4;
             skillProperty = SkillProperty.All;
         }
 

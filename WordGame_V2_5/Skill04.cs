@@ -10,7 +10,7 @@ namespace WordGame_V2_5
     {
         public Skill04 ( )
         {
-            name = "***普攻***";
+            name = "***弹跳攻击***";
             ID = 04;
             damageBase = 2;
             skillProperty = SkillProperty.Single;

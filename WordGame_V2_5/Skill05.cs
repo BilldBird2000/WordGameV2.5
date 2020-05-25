@@ -12,7 +12,7 @@ namespace WordGame_V2_5
         {
             name = "***吸血***";
             ID = 05;
-            damageBase = 2;
+            damageBase = 3;
             skillProperty = SkillProperty.Multi;
         }
 

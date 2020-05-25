@@ -13,6 +13,7 @@ namespace WordGame_V2_5
         {
             name = "==关卡02==";
             id = 02;
+            nextID = 03;
             notPass = true;
             gamelevelType = GamelevelType.Battle;
             maxRound = 11;
@@ -35,9 +36,9 @@ namespace WordGame_V2_5
                 enemy.id += i;
                 allList.Add (enemy);
             }
-            for(int i=0;i<num2;i++ )
+            for ( int i = 0; i < num2; i++ )
             {
-                RoleBase enemy = new Enemy01 ( );
+                RoleBase enemy = new Enemy02 ( );
                 enemy.id += i;
                 allList.Add (enemy);
             }
@@ -48,7 +49,7 @@ namespace WordGame_V2_5
         {
 
             Util.Input ( );
-            Util.Input (name);
+            Util.Input ("{0} 通关条件:在{1}回合内完成战斗!" , name , maxRound - 1);
             for ( int i = 0; i < allList.Count; i++ )
                 liveList.Add (allList [ i ]);
 
@@ -67,10 +68,9 @@ namespace WordGame_V2_5
                                         actSeqList [ i ].name , actSeqList [ i ].id , actSeqList [ i ].Hp);
                     }
                     Util.Input ("可用技能:");
-                    Util.Input ("       单体: skill01_小火球[-6], skill04_普攻[-5]");
-                    Util.Input ("             skill06_愈合[+10], skill07_快速射击[-3]");
-                    Util.Input ("       群体: skill02_爆裂大火球[-4], skill05_吸血[-2,+2]");
-                    Util.Input ("       全体: skill03_流星火雨[-5]");
+                    Util.Input ("       单体: skill 01_小火球[-6], skill 06_愈合[+10]");
+                    Util.Input ("       群体: skill 02_炎爆术[-5], skill 05_吸血[-3,+3]");
+                    Util.Input ("       全体: skill 03_流星火雨[-4]");
 
                     OrderPass ( );
 
@@ -114,6 +114,7 @@ namespace WordGame_V2_5
                         maxRound = r;
                         notPass = false;
                         BattleMng.Ins.GameLevelPass = true;
+                        Game.Ins.nowGamelevel = new Gamelevel03 ( );
                         break;
                     }
 

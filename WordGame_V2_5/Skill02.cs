@@ -10,9 +10,9 @@ namespace WordGame_V2_5
     {
         public Skill02 ( )
         {
-            name = "***爆裂大火球***";
+            name = "***炎爆术***";
             ID = 02;
-            damageBase = 4;
+            damageBase = 5;
             skillProperty = SkillProperty.Multi;
         }
 
