@@ -61,10 +61,11 @@
     <Compile Include="Skill\Skill01.cs" />
     <Compile Include="Skill\Skill02.cs" />
     <Compile Include="Skill\Skill03.cs" />
+    <Compile Include="Skill\Skill11.cs" />
     <Compile Include="Skill\Skill04.cs" />
     <Compile Include="Skill\Skill05.cs" />
-    <Compile Include="Skill\Skill06.cs" />
-    <Compile Include="Skill\Skill07.cs" />
+    <Compile Include="Skill\Skill12.cs" />
+    <Compile Include="Skill\Skill13.cs" />
     <Compile Include="Skill\SkillBase.cs" />
     <Compile Include="SkillMng.cs" />
     <Compile Include="Util.cs" />

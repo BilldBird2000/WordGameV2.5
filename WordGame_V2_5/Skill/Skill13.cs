@@ -6,20 +6,20 @@ using System.Threading.Tasks;
 
 namespace WordGame_V2_5
 {
-    class Skill07 : SkillBase
+    class Skill13 : SkillBase
     {
-        public Skill07 ( )
+        public Skill13 ( )
         {
-            name = "***快速射击***";
-            ID = 07;
-            damageBase = 3;
+            name = "***投石***";
+            ID = 13;
+            damageBase = 4;
             skillProperty = SkillProperty.Single;
         }
 
         public override void Do ( RoleBase user , RoleBase target )
         {
             int hp = target.Hp;
-            int r = Game._random.Next (0 , 2);
+            int r = Game._random.Next (0 , 4);
             int damage = damageBase + r;
             hp -= damage;
 

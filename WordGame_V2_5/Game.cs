@@ -40,41 +40,40 @@ namespace WordGame_V2_5
             Util.Input ("==游戏开始==");
 
             nowGamelevel = new Gamelevel01 ( );
-            nextID = nowGamelevel.id;   //2
+            nextID = nowGamelevel.nextID;   
             while ( nextID != 0 )
             {
-                nowGamelevel.Battle ( );    //3
+                nowGamelevel.Battle ( );   
                 if ( BattleMng.Ins.GameLevelPass == true )
                 {
                     BattleMng.Ins.GameLevelPass = false;
                     nextID = nowGamelevel.nextID;
                     Util.Input ( );
                     Util.Input ("       恭喜通关~~累计获得 {0} 金币!!!" , BattleMng.Ins.GoldTotal);
-                    Util.Input ("       按任意键进入下一关卡~~" , BattleMng.Ins.GoldTotal);
+                    if ( nextID != 0 )
+                        Util.Input ("       按任意键进入下一关卡~~");
+                    else
+                        Util.Input ("       完成全部关卡!!按任意键继续~~");
+
                     Console.ReadKey ( );
                 }
                 else
                 {
                     Util.Input ( );
-                    Util.Input ("       路漫漫其修远兮...");
+                    Util.Input ("       SayGoodbye...");
                     break;
                 }
 
-                //foreach(int k in level.Keys)
-                //{
-                //    MatchLevel (k);     //实例化第k关,并完成对matchLevel的赋值
-                //}
             }
-
-            Util.Input ( );
-            Util.Input ("这只是个测试...");
-
 
             Util.Input ( );
             Util.Input ("==游戏结束==");
 
+            Util.Input ( );
+            Util.Input ("Only for test...");
+
         }
 
- 
+
     }
 }

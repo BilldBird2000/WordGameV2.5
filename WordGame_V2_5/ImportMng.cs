@@ -115,7 +115,8 @@ namespace WordGame_V2_5
                 }
                 else
                 {
-                    Util.Input ("全体技能>>>>>>");
+                    //Util.Input ("全体技能>>>>>>");
+                    Util.Input ("惊喜不惊喜?意外不意外?>>>>>>");
                     return AllTarsID (liveList);
                 }
             }

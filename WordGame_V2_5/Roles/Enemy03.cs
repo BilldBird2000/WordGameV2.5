@@ -13,7 +13,7 @@ namespace WordGame_V2_5
         public Enemy03 ( )
         {
             name = "岩石巨怪";
-            id = 03;
+            id = 2301;
             roleType = RoleType.Monster;
             roleStatus = RoleStatus.Alive;
 

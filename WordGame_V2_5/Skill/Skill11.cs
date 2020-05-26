@@ -6,26 +6,26 @@ using System.Threading.Tasks;
 
 namespace WordGame_V2_5
 {
-    class Skill06 : SkillBase
+    class Skill11 : SkillBase
     {
-        public Skill06 ( )
+        public Skill11 ( )
         {
-            name = "***愈合***";
-            ID = 06;
-            damageBase = 10;
+            name = "***弹跳攻击***";
+            ID = 11;
+            damageBase = 2;
             skillProperty = SkillProperty.Single;
         }
 
         public override void Do ( RoleBase user , RoleBase target )
         {
+            //base.Do (user , target);
             int hp = target.Hp;
             int damage = damageBase;
-            hp += damage;
+            hp -= damage;
 
-            Util.Input ("           {0}_{1} 向 {2}_{3} 释放技能{4},恢复 {5} 点生命值!!!" ,
+            Util.Input ("           {0}_{1} 向 {2}_{3} 释放技能{4},造成 {5} 点伤害!!!" ,
                 user.name , user.id , target.name , target.id , name , damage);
             target.Hp = hp;
         }
-
     }
 }

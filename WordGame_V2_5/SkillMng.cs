@@ -43,13 +43,16 @@ namespace WordGame_V2_5
                 case 05:
                     skillMatch = new Skill05 ( );
                     break;
-                case 06:
-                    skillMatch = new Skill06 ( );
+                
+                case 11:
+                    skillMatch = new Skill11 ( );
                     break;
-                case 07:
-                    skillMatch = new Skill07 ( );
+                case 12:
+                    skillMatch = new Skill12 ( );
                     break;
-
+                case 13:
+                    skillMatch = new Skill13 ( );
+                    break;
                 default:
                     Util.Input ("技能ID无效!");
                     skillMatch = null;
