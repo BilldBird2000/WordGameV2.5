@@ -15,7 +15,7 @@ namespace WordGame_V2_5
         Multi,
         All,
         //None,   //召唤
-        //Region  //地毯技能
+        //Region,  //地毯技能
     }
 
     public enum RoleType

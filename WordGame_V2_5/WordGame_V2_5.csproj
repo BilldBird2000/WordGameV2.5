@@ -44,27 +44,28 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BattleMng.cs" />
-    <Compile Include="Gamelevel02.cs" />
-    <Compile Include="Gamelevel03.cs" />
+    <Compile Include="Roles\Enemy03.cs" />
+    <Compile Include="Gamelevel\Gamelevel02.cs" />
+    <Compile Include="Gamelevel\Gamelevel03.cs" />
     <Compile Include="Roles\Enemy01.cs" />
     <Compile Include="EnumCompl.cs" />
-    <Compile Include="Gamelevel01.cs" />
-    <Compile Include="GamelevelBase.cs" />
+    <Compile Include="Gamelevel\Gamelevel01.cs" />
+    <Compile Include="Gamelevel\GamelevelBase.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="ImportMng.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RoleBase.cs" />
+    <Compile Include="Roles\RoleBase.cs" />
     <Compile Include="Roles\Enemy02.cs" />
     <Compile Include="Roles\Sally.cs" />
-    <Compile Include="Skill01.cs" />
-    <Compile Include="Skill02.cs" />
-    <Compile Include="Skill03.cs" />
-    <Compile Include="Skill04.cs" />
-    <Compile Include="Skill05.cs" />
-    <Compile Include="Skill06.cs" />
-    <Compile Include="Skill07.cs" />
-    <Compile Include="SkillBase.cs" />
+    <Compile Include="Skill\Skill01.cs" />
+    <Compile Include="Skill\Skill02.cs" />
+    <Compile Include="Skill\Skill03.cs" />
+    <Compile Include="Skill\Skill04.cs" />
+    <Compile Include="Skill\Skill05.cs" />
+    <Compile Include="Skill\Skill06.cs" />
+    <Compile Include="Skill\Skill07.cs" />
+    <Compile Include="Skill\SkillBase.cs" />
     <Compile Include="SkillMng.cs" />
     <Compile Include="Util.cs" />
   </ItemGroup>

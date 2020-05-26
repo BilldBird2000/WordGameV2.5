@@ -47,7 +47,7 @@ namespace WordGame_V2_5
 
                     actSeqList = BattleMng.Ins.ActSequence (_player , liveList);
                     Util.Input ("场上状态:");
-                    for (int i = 0; i < actSeqList.Count; i++ )
+                    for ( int i = 0; i < actSeqList.Count; i++ )
                     {
                         Util.Input ("       {0}, ID:{1}, 生命值:{2}. " ,
                                         actSeqList [ i ].name , actSeqList [ i ].id , actSeqList [ i ].Hp ,
@@ -82,29 +82,26 @@ namespace WordGame_V2_5
                             if ( _player.roleStatus == RoleStatus.Dead )
                             {
                                 notPass = false;
+                                maxRound = r;
                                 break;
                             }
                         }
                     }
 
-                    if ( liveList.Count == 0 )
+                    if ( liveList.Count == 0 && _player.roleStatus == RoleStatus.Alive )
                     {
                         notPass = false;
+                        Game.Ins.nowGamelevel = new Gamelevel02 ( );
+                        BattleMng.Ins.GameLevelPass = true;
                         break;
                     }
+                }
+            }
 
-                }
-
-                if ( liveList.Count > 0 )
-                {
-                    Util.Input ( );
-                    Util.Input ("       未能在{0}回合内完成战斗,闯关失败..." , maxRound - 1);
-                }
-                else
-                {
-                    Game.Ins.nowGamelevel = new Gamelevel02 ( );
-                    BattleMng.Ins.GameLevelPass = true;
-                }
+            if ( liveList.Count > 0 && _player.roleStatus == RoleStatus.Alive )
+            {
+                Util.Input ( );
+                Util.Input ("       未能在{0}回合内完成战斗,闯关失败..." , maxRound - 1);
             }
         }
 

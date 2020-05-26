@@ -45,15 +45,32 @@ namespace WordGame_V2_5
         {
             bool skillOrder = false;
             bool idOrder = false;
-            while ( !skillOrder )
+            bool orderPass = false;
+            while( !orderPass )
             {
-                skillOrder = ImportMng.Ins.ParseSkillOrder ( );
-                if ( skillOrder == true )
+                while ( !skillOrder )
                 {
-                    while ( !idOrder )
-                        idOrder = ImportMng.Ins.ParseTarsOrder (liveList , _player);
+                    skillOrder = ImportMng.Ins.ParseSkillOrder ( );
+                    if ( skillOrder == true )
+                    {
+                        while ( !idOrder )
+                        {
+                            idOrder = ImportMng.Ins.ParseTarsOrder (liveList , _player);
+                            //if ( ImportMng.Ins.back == true )
+                                //idOrder = true;
+                        }
+                        if ( ImportMng.Ins.back == true )
+                        {
+                            skillOrder = false;
+                            idOrder = false;
+                            Util.Input ("撤销当前技能,需要重新输入技能!");
+                        }
+                    }
+                    orderPass = true;
+                    ImportMng.Ins.back = false;
                 }
             }
+            
         }
 
     }

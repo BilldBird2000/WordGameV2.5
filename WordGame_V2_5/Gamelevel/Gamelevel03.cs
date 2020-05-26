@@ -10,12 +10,14 @@ namespace WordGame_V2_5
     {
         public Gamelevel03 ( )
         {
-
+            name = "==关卡03==";
+            id = 03;
         }
 
         public override void Battle ( )
         {
             Util.Input ("第三关,测试");
+            nextID = 0;
             BattleMng.Ins.GameLevelPass = false;
         }
     }

@@ -37,6 +37,7 @@ namespace WordGame_V2_5
         public SkillBase matchSkill;    //技能
         public List<string> idStrList;
         public List<int> tarsIDList;    //目标ID列表
+        public bool back = false;
 
         //技能指令输入格式:skill skillID
         //执行后获得返回值true,和skillID的赋值
@@ -101,7 +102,7 @@ namespace WordGame_V2_5
         //解析第二段输入:tarsID
         public bool ParseTarsOrder ( List<RoleBase> liveList , RoleBase player )
         {
-            Util.Input ("请输入目标ID:");
+            Util.Input ("请输入目标ID (重新选择技能请输入back):");
             string import = Console.ReadLine ( );
             tarsIDList = new List<int> ( );
 
@@ -134,9 +135,7 @@ namespace WordGame_V2_5
                     return false;
                 }
                 else if ( matchSkill.skillProperty == SkillProperty.Multi )
-                {
                     return FindTargetsID (liveList , player);
-                }
                 else
                 {
                     Util.Input ("全体技能...");
@@ -145,14 +144,19 @@ namespace WordGame_V2_5
             }
             else
             {
-                if ( matchSkill.skillProperty != SkillProperty.All )
+                if ( idStrList [ 0 ] == "back" )
                 {
-                    return FindTargetsID (liveList , player);
+                    back = true;
+                    return true;
                 }
                 else
                 {
-                    return AllTarsID (liveList);
+                    if ( matchSkill.skillProperty != SkillProperty.All )
+                        return FindTargetsID (liveList , player);
+                    else
+                        return AllTarsID (liveList);
                 }
+                
             }
         }
 

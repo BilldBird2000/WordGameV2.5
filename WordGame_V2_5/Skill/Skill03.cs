@@ -12,7 +12,7 @@ namespace WordGame_V2_5
         {
             name = "***流星火雨***";
             ID = 03;
-            damageBase = 4;
+            damageBase = 40;
             skillProperty = SkillProperty.All;
         }
 
@@ -22,7 +22,7 @@ namespace WordGame_V2_5
             int damage = damageBase;
             tarHp -= damage;
 
-            Util.Input ("           {0}_{1} 向 {2}_{3} 释放技能 {4}, 造成 {5} 点伤害!!!" ,
+            Util.Input ("           {0}_{1} 向 {2}_{3} 释放技能{4},造成 {5} 点伤害!!!" ,
                 user.name , user.id , target.name , target.id , name , damage);
             target.Hp = tarHp;
         }

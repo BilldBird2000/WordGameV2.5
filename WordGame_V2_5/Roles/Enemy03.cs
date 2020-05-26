@@ -3,22 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WordGame_V2_5.Roles;
 
-namespace WordGame_V2_5.Roles
+namespace WordGame_V2_5
 {
-    //Goblin
-    class Enemy02 : RoleBase
+    //Stone
+    class Enemy03 : RoleBase
     {
-        public Enemy02 ( )
+        public Enemy03 ( )
         {
-            name = "哥布林";
-            id = 2201;
+            name = "岩石巨怪";
+            id = 03;
             roleType = RoleType.Monster;
             roleStatus = RoleStatus.Alive;
-            MaxHp = 8;
-            Hp = 10;
-            Speed = 4;
-            gold = Game._random.Next (5 , 8);
+
+            MaxHp = 20;
+            Hp = 20;
+            Speed = 3;
+            gold = Game._random.Next (10 , 15);
         }
 
         public override void Die ( )
@@ -28,9 +30,10 @@ namespace WordGame_V2_5.Roles
 
         public override void UseSkill ( RoleBase user , RoleBase target , SkillBase skill )
         {
-            skill.Do (user , target);
-            //base.UseSkill (user , target , skill);
+            base.UseSkill (user , target , skill);
         }
 
+
     }
+
 }

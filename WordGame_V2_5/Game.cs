@@ -24,7 +24,7 @@ namespace WordGame_V2_5
 
         public static Random _random = new Random ( );
         public GamelevelBase nowGamelevel = null;
-        public int nowID;
+        public int nextID;
 
         //public Dictionary<int , GamelevelBase> level = new Dictionary<int , GamelevelBase>
         //{
@@ -40,13 +40,14 @@ namespace WordGame_V2_5
             Util.Input ("==游戏开始==");
 
             nowGamelevel = new Gamelevel01 ( );
-            nowID = nowGamelevel.id;
-            while ( nowID != 0 )
+            nextID = nowGamelevel.id;   //2
+            while ( nextID != 0 )
             {
-                nowGamelevel.Battle ( );
+                nowGamelevel.Battle ( );    //3
                 if ( BattleMng.Ins.GameLevelPass == true )
                 {
-                    nowID = nowGamelevel.nextID;
+                    BattleMng.Ins.GameLevelPass = false;
+                    nextID = nowGamelevel.nextID;
                     Util.Input ( );
                     Util.Input ("       恭喜通关~~累计获得 {0} 金币!!!" , BattleMng.Ins.GoldTotal);
                     Util.Input ("       按任意键进入下一关卡~~" , BattleMng.Ins.GoldTotal);

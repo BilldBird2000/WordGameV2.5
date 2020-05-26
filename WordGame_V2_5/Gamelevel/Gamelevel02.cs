@@ -84,48 +84,52 @@ namespace WordGame_V2_5
                             for ( int j = tarsList.Count - 1; j >= 0; j-- )
                             {
                                 if ( tarsList [ j ].roleStatus == RoleStatus.Dead )
+                                {
                                     liveList.Remove (tarsList [ j ]);
+                                    BattleMng.Ins.GoldTotal = tarsList [ j ].gold;
+                                }
                             }
                         }
-                        else if ( actSeqList [ i ] is Enemy01 || actSeqList [ i ].roleStatus == RoleStatus.Alive )
+                        else if ( actSeqList [ i ] is Enemy01 && actSeqList [ i ].roleStatus == RoleStatus.Alive )
                         {
                             actSeqList [ i ].UseSkill (actSeqList [ i ] , _player , enemy01AI);
                             if ( _player.roleStatus == RoleStatus.Dead )
                             {
-                                Util.Input ( );
                                 notPass = false;
                                 maxRound = r;
+                                break;
                             }
                         }
-                        else if ( actSeqList [ i ] is Enemy02 || actSeqList [ i ].roleStatus == RoleStatus.Alive )
+                        else if ( actSeqList [ i ] is Enemy02 && actSeqList [ i ].roleStatus == RoleStatus.Alive )
                         {
                             actSeqList [ i ].UseSkill (actSeqList [ i ] , _player , enemy02AI);
                             if ( _player.roleStatus == RoleStatus.Dead )
                             {
-                                Util.Input ( );
                                 notPass = false;
                                 maxRound = r;
+                                break;
                             }
                         }
                     }
 
-                    if ( liveList.Count == 0 )
+                    if ( liveList.Count == 0 && _player.roleStatus == RoleStatus.Alive )
                     {
-                        maxRound = r;
                         notPass = false;
-                        BattleMng.Ins.GameLevelPass = true;
                         Game.Ins.nowGamelevel = new Gamelevel03 ( );
+                        BattleMng.Ins.GameLevelPass = true;
                         break;
                     }
 
                 }
 
-
-
             }
 
+            if ( liveList.Count > 0 && _player.roleStatus == RoleStatus.Alive )
+            {
+                Util.Input ( );
+                Util.Input ("       未能在{0}回合内完成战斗,闯关失败..." , maxRound - 1);
+            }
 
         }
-
     }
 }

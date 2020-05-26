@@ -25,7 +25,7 @@ namespace WordGame_V2_5
 
         public Sally()
         {
-            name = "小鸡莎莉";
+            name = "~~莎莉";
             id = 1001;
             roleType = RoleType.Player;
             roleStatus = RoleStatus.Alive;
